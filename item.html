@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Материал — МАРТдекор</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="item">
+<div id="header"></div>
+
+<div class="wrap page-head" style="padding-bottom:16px"><div class="crumbs" id="crumbs"></div></div>
+
+<div class="wrap item">
+  <div class="gallery" id="gallery"></div>
+  <div>
+    <span class="eyebrow" id="iSec"></span>
+    <h1 id="iName"></h1>
+    <p class="lead" id="iLine"></p>
+    <div style="margin-top:18px"><span class="status" id="iStatus"></span></div>
+    <div class="price" id="iPrice"></div>
+    <div class="buy">
+      <div class="qty"><button type="button" data-step="-1">−</button><input id="qty" value="1" inputmode="numeric" aria-label="Количество"><button type="button" data-step="1">+</button></div>
+      <button class="btn btn-main" id="iAdd" type="button"><i class="ti ti-bookmark-plus"></i>В&nbsp;подборку</button>
+      <a class="btn btn-line" href="index.html#visit">Посмотреть образец в&nbsp;салоне</a>
+    </div>
+    <p id="iAbout"></p>
+    <table class="specs" id="iSpecs"></table>
+    <div class="small muted">Подходит для&nbsp;стилей:</div>
+    <div class="tags" id="iStyles"></div>
+    <div class="perks">
+      <div class="perk"><i class="ti ti-calculator"></i><span>Посчитаем количество под&nbsp;вашу площадь</span></div>
+      <div class="perk"><i class="ti ti-home-check"></i><span>Образец можно взять на&nbsp;примерку на&nbsp;объект</span></div>
+      <div class="perk"><i class="ti ti-truck-delivery"></i><span>По&nbsp;Ростову&nbsp;— Яндекс Go, по&nbsp;России&nbsp;— ТК</span></div>
+      <div class="perk"><i class="ti ti-qrcode"></i><span>Оплата в&nbsp;салоне или&nbsp;по&nbsp;QR-коду СБП</span></div>
+    </div>
+    <p class="src" id="iSrc"></p>
+  </div>
+</div>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow">Сочетается</span><h2>С&nbsp;этим часто подбирают</h2></div></div>
+    <div class="grid" id="related"></div>
+  </div>
+</section>
+
+<div id="footer"></div>
+<script src="js/typo.js"></script>
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
