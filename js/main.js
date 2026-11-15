@@ -48,10 +48,13 @@
 
   document.body.insertAdjacentHTML("beforeend",
     '<aside class="drawer" id="drawer" aria-label="Моя подборка"><div class="drawer-head"><h3>Моя подборка</h3><button class="x" id="drawerX" type="button" aria-label="Закрыть"><i class="ti ti-x"></i></button></div>' +
+    // шаги как у мудборда: человек видит, что будет после отправки
+    '<ol class="d-steps"><li>' + t("Отметьте материалы закладкой") + "</li><li>" + t("Отправьте подборку менеджеру") + "</li><li>" + t("Получите расчёт под вашу площадь и счёт") + "</li></ol>" +
     '<div class="drawer-body" id="drawerBody"></div>' +
     '<div class="drawer-foot"><div class="sum"><span>Ориентировочно</span><span id="bagSum">0 ₽</span></div>' +
     '<p class="small muted">' + t("Это не заказ. Менеджер проверит наличие, пересчитает количество под вашу площадь и пришлёт счёт.") + "</p>" +
     '<form class="form" id="bagForm"><input required placeholder="Имя"><input required type="tel" placeholder="Телефон или мессенджер">' +
+    '<input placeholder="' + esc(T("Комната, площадь стен или ссылка на проект")) + '">' +
     '<label class="check"><input type="checkbox"> ' + t("Я дизайнер или мастер") + "</label>" +
     '<button class="btn btn-main" type="submit">Отправить подборку менеджеру</button><div class="ok" id="bagOk">' + t("Подборка отправлена. Менеджер свяжется с вами в рабочее время салона.") + "</div></form></div></aside>" +
     '<div class="drawer-bg" id="drawerBg"></div>');
@@ -192,6 +195,14 @@
     var qty = $("#qty");
     $$("[data-step]").forEach(function (b) { b.onclick = function () { qty.value = Math.max(1, (+qty.value || 1) + +b.getAttribute("data-step")); }; });
     $("#iAdd").onclick = function () { add(it.id, +qty.value || 1); openDrawer(); };
+    // Для лепнины, гипса, панелей и шпона — образцы на объект (пост ВК от 18 марта: «закажите выезд с образцами»)
+    var sample = $("#iSample");
+    if (sample && ["lepnina", "gips", "paneli", "shpon"].indexOf(it.sec) >= 0) {
+      sample.innerHTML = '<i class="ti ti-home-check"></i>' + t("Взять образцы на объект");
+      sample.href = "https://wa.me/79094200420?text=" + encodeURIComponent("Здравствуйте! Хочу взять образцы на объект: " + it.name);
+      sample.target = "_blank"; sample.rel = "noopener";
+      $("#iSampleNote").hidden = false;
+    }
     var rel = ITEMS.filter(function (x) { return x.id !== it.id && (x.sec === it.sec || x.styles.some(function (st) { return it.styles.indexOf(st) >= 0; })); }).slice(0, 4);
     $("#related").innerHTML = rel.map(card).join("");
     bindAdd($("#related"));
@@ -215,6 +226,11 @@
     bindAdd($("#aItems"));
     $("#aMore").innerHTML = STYLES.filter(function (s) { return s.id !== id; }).map(function (s) { return '<a class="tag" href="article.html?id=' + s.id + '">' + t(s.name) + "</a>"; }).join("");
   }
+
+  /* ── вход «по комнате»: выбранная комната сразу подставляется в заявку ── */
+  $$("[data-room]").forEach(function (a) {
+    a.addEventListener("click", function () { var s = $("#roomSelect"); if (s) s.value = a.getAttribute("data-room"); });
+  });
 
   /* ── формы-заявки (демо) ── */
   $$("form[data-demo]").forEach(function (f) {

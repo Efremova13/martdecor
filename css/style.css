@@ -112,6 +112,33 @@ p { margin: 0 0 12px; }
   box-shadow: var(--shadow); padding: 14px 18px; display: flex; align-items: center; gap: 12px;
 }
 .hero-badge b { font-family: var(--display); font-size: 34px; line-height: 1; }
+.hero-more { margin: 16px 0 0; font-size: 15px; }
+.hero-more a { color: var(--muted); text-underline-offset: 3px; }
+.hero-more a:hover { color: var(--ink); }
+
+/* полоса коротких фактов под первым экраном */
+.factbar { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 22px 0; }
+.factbar ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
+.factbar li { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; line-height: 1.4; }
+.factbar i { font-size: 22px; color: var(--wine); flex: none; }
+
+/* пометка «уточняем у салона» — для обещаний, которые клиент ещё не подтвердил */
+.todo {
+  display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: .02em; color: var(--wine);
+  border: 1px dashed var(--wine); border-radius: 999px; padding: 0 7px; vertical-align: 1px; white-space: nowrap;
+}
+
+/* без сюрпризов */
+.calm { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.calm-card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--r); padding: 24px; }
+.calm-card > i { font-size: 28px; color: var(--wine); }
+.calm-card h3 { font-size: 23px; margin: 12px 0 8px; }
+.calm-card p { font-size: 15px; color: var(--muted); margin: 0; }
+
+/* вход по комнате */
+.rooms { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 28px; }
+.rooms .chip { text-decoration: none; }
+.rooms .chip:hover { border-color: var(--ink); }
 
 /* ── заглушки фото: арка из логотипа ── */
 .ph {
@@ -219,6 +246,11 @@ section { padding: 84px 0; }
 .pro-list i { font-size: 24px; color: #D9A7AF; flex: none; }
 .lunch { background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .14); border-radius: var(--r); padding: 26px; }
 .lunch .big { font-family: var(--display); font-size: 40px; line-height: 1.1; margin: 6px 0 12px; }
+.events { margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, .14); }
+.events ul { list-style: none; padding: 0; margin: 10px 0 16px; display: grid; gap: 10px; }
+.events li { display: grid; grid-template-columns: 160px 1fr; gap: 12px; font-size: 15px; }
+.events li span { color: #BDB3AA; }
+@media (max-width: 760px) { .events li { grid-template-columns: 1fr; gap: 2px; } }
 
 /* команда */
 .team { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
@@ -338,6 +370,9 @@ section { padding: 84px 0; }
 .drawer-head h3 { font-size: 30px; }
 .x { border: 0; background: none; font-size: 26px; }
 .drawer-body { padding: 18px 24px; overflow-y: auto; flex: 1; }
+.d-steps { list-style: none; counter-reset: d; margin: 0; padding: 14px 24px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; border-bottom: 1px solid var(--line); background: var(--paper); }
+.d-steps li { counter-increment: d; font-size: 13px; line-height: 1.35; color: var(--muted); }
+.d-steps li::before { content: counter(d); display: block; font-family: var(--display); font-size: 26px; line-height: 1; color: var(--wine); margin-bottom: 4px; }
 .d-item { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; padding: 14px 0; border-bottom: 1px solid var(--line); }
 .d-item b { font-size: 15px; font-weight: 600; }
 .d-item .qty { justify-self: start; }
@@ -362,7 +397,8 @@ footer .logo b { color: #fff; }
 /* адаптив — базово, без горизонтальной прокрутки; полноценная мобильная версия после утверждения десктопа */
 @media (max-width: 1080px) {
   .grid, .sections, .styles { grid-template-columns: repeat(2, 1fr); }
-  .steps { grid-template-columns: repeat(2, 1fr); }
+  .steps, .calm { grid-template-columns: repeat(2, 1fr); }
+  .factbar ul { grid-template-columns: repeat(3, 1fr); }
   .cat-layout .grid { grid-template-columns: repeat(2, 1fr); }
   .nav { display: none; }
   .burger { display: block; }
@@ -374,7 +410,7 @@ footer .logo b { color: #fff; }
   .form-box[style] { grid-template-columns: minmax(0, 1fr) !important; }
   .pro > *, .hero .wrap > *, .visit > *, .form-box > * { min-width: 0; }
   .hero-facts, .reviews, .team, footer .wrap { grid-template-columns: 1fr; }
-  .grid, .sections, .styles, .steps, .cat-layout .grid, .perks { grid-template-columns: 1fr; }
+  .grid, .sections, .styles, .steps, .cat-layout .grid, .perks, .calm, .factbar ul { grid-template-columns: 1fr; }
   .hero-visual .ph:nth-child(1) { height: 300px; }
   .hero-visual .ph:nth-child(2) { height: 220px; }
   .hero-badge { left: 8px; }
